@@ -1,0 +1,180 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeFile="MasterPage.master.cs" Inherits="MasterPage" %>
+
+<%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="asp" %>
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head runat="server">
+    <title><%= ConfigurationManager.AppSettings["GenericTitle"].ToString()%> CMS</title>
+
+    <link rel="stylesheet" href="/admin/styles/layout.css" type="text/css" media="screen" />
+
+    <!--[if lt IE 9]>
+	    <link rel="stylesheet" href="/styles/css/ie.css" type="text/css" media="screen" />
+	    <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+	<![endif]-->
+    <script src="/admin/scripts/jquery-1.11.2.js" type="text/javascript"></script>
+    <script src="/admin/scripts/hideshow.js" type="text/javascript"></script>
+    <script src="/admin/scripts/jquery.tablesorter.min.js" type="text/javascript"></script>
+    <script src="/admin/scripts/jquery.equalHeight.js" type="text/javascript"></script>
+    <script src="/admin/ckeditor/ckeditor.js"></script>
+	<script src="/admin/scripts/extend.js"></script>
+    
+    <link href="/admin/styles/clean.css" rel="stylesheet" />
+    
+    <link href="/admin/styles/prettyPhoto.css" rel="stylesheet" />
+    <script src="/admin/scripts/jquery.prettyPhoto.js" type="text/javascript"></script>
+
+    <link href="http://scripts.vertouk.com/VIE/prerequisites/jquery-ui.css" type="text/css" rel="stylesheet" />
+	<link href="http://scripts.vertouk.com/VIE/v1/latest/VIE.css" type="text/css" rel="stylesheet" />
+	<link href="http://scripts.vertouk.com/EP/v2/latest/EasyPop.css" type="text/css" rel="stylesheet" />
+    <script src="http://scripts.vertouk.com/EP/v2/latest/EasyPop.js"></script>
+    <script src="http://scripts.vertouk.com/VIE/prerequisites/jquery-ui.js"></script>
+    <script src="http://scripts.vertouk.com/VIE/v1/latest/exif.js"></script>
+    <script src="http://scripts.vertouk.com/VIE/v1/latest/config.js"></script>
+    <script src="http://scripts.vertouk.com/VIE/v1/latest/object.js"></script>
+    <script src="http://scripts.vertouk.com/VIE/v1/latest/bindings.js"></script>
+    <script src="http://scripts.vertouk.com/VIE/v1/latest/attach.js"></script>
+
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $(".tablesorter").tablesorter();
+        });
+
+        $(document).ready(function () {
+        	$(".tab_content").hide();
+        	$("ul.tabs li").click(function (e) {
+        		$("ul.tabs li").removeClass("active");
+        		$(this).addClass("active");
+        		$(".tab_content").hide();
+        		var activeTab = $(this).find("a").attr("href");
+        		$(activeTab).show();
+        		$(window).trigger("resize");
+        		return false;
+        	});
+
+        	// Remember tab
+        	var tab = (document.cookie.match('(^|; )lastTab=([^;]*)') || 0)[2], url = (document.cookie.match('(^|; )lastUrl=([^;]*)') || 0)[2], date = new Date();
+        	if (date.getMonth() >= 12) { date.setMonth(1); date.setYear(date.getYear() + 1); } else date.setMonth(date.getMonth() + 1);
+        	top.location.href.toLowerCase() == url && $("a[href='" + tab + "']").parents('li').click();
+        	document.cookie = 'lastUrl=' + top.location.href.toLowerCase() + '; expires=' + date.toString() + '; path=/admin/';
+        	$('ul.tabs li').on('click', function () {
+        		document.cookie = 'lastTab=' + $(this).find('a').attr('href') + '; expires=' + date.toString() + '; path=/admin/';
+        	});
+        	(!tab || top.location.href.toLowerCase() != url) && $('ul.tabs li:first-child').click();
+        	if (location.hash && $('ul.tabs a[href=' + location.hash + ']').click()) location.hash = '';
+        });
+    </script>
+    <script type="text/javascript">
+        $(function () {
+            $('.column').equalHeight();
+        });
+    </script>
+
+    <asp:ContentPlaceHolder ID="head" runat="server">
+    </asp:ContentPlaceHolder>
+</head>
+<body>
+    <form id="form1" runat="server">
+    <asp:SqlDataSource ID="ds" runat="server" DataSourceMode="DataReader" ConnectionString="<%$ ConnectionStrings:MSSQL %>" />
+
+    <asp:ToolkitScriptManager runat="server"></asp:ToolkitScriptManager>
+
+     <div>
+        <div id="header">
+            <h1 class="site_title"><a href="/admin/"><%= ConfigurationManager.AppSettings["GenericTitle"].ToString()%> CMS</a></h1>
+            <h2 class="section_title">Dashboard</h2>
+            <div class="btn_view_site"><a href="/" target="_blank">View Site</a></div>
+			<a href="http://scripts.vertouk.com/FAQ/Help.html" class="help-button ep" target="_blank"></a>
+        </div>
+
+        <div id="secondary_bar">
+            <div class="user">
+                <p><asp:Label ID="lblLoggedOnUser" runat="server" Text="Welcome Bojan"></asp:Label></p>
+                <asp:LoginStatus CssClass="logout" runat="server" />
+            </div>
+            <div class="breadcrumbs_container">
+                <div class="breadcrumbs">
+                    <a href="/admin">> Home</a>
+                    <asp:ContentPlaceHolder ID="cphBreadcrumb" runat="server" />
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <div>
+
+        <div id="sidebar" class="column">
+        
+            <h3><asp:Literal runat="server" ID="litMainSectionTitle" /></h3>
+            <ul class="toggle" id="content">
+                <asp:PlaceHolder runat="server" ID="phPages">
+                    <li class="btn-pages"><a href="/admin/pages.aspx">Pages</a>
+                        <ul class="toggle" id="pages">
+                            <li class="btn-edit-page"><a href="/admin/homepage.aspx">Home</a></li>
+                            <asp:Repeater runat="server" ID="rptNav">
+                                <ItemTemplate>
+                                    <li class="btn-edit-page"><a href="/admin/page.aspx?id=<%#Eval(CmsSettings.IdField) %>"><%#Eval(CmsSettings.TitleField) %></a></li>
+                                </ItemTemplate>
+                            </asp:Repeater>
+                        </ul>
+                    </li>
+                </asp:PlaceHolder>
+                <asp:PlaceHolder runat="server" ID="phBlog">
+                    <li class="btn-pages"><a href="/admin/page.aspx?id=7">Posts</a></li>
+                </asp:PlaceHolder>
+            </ul>
+            
+            <asp:PlaceHolder runat="server" ID="phUsers">
+            
+                <h3>Users</h3>
+                <ul class="toggle" id="users">
+                    <li class="add-user"><a href="/admin/users/newuser.aspx">Add New User</a></li>
+                    <li class="change-password"><a href="/admin/users/changepassword.aspx">Change Password</a></li>
+                    <asp:PlaceHolder runat="server" ID="phRoles" Visible="false"><li class="roles"><a href="/admin/users/roles.aspx">Manage Roles</a></li></asp:PlaceHolder>
+                    <li class="view-users"><a href="/admin/users">View Users</a></li>
+                </ul>
+            </asp:PlaceHolder>
+
+            <asp:PlaceHolder runat="server" ID="phMasterAdmin" Visible="false">
+
+                <h3>Settings</h3>
+                <ul class="toggle" id="settings">
+                    <li class="module-manager"><a href="/admin/settings/">Module Manager</a></li>
+                    <li class="module-manager"><a href="/admin/settings/templates.aspx">Template Manager</a></li>
+                </ul>
+            </asp:PlaceHolder>
+
+            <h3>Admin</h3>
+            <ul class="toggle">
+                    <li><a href="" onclick="ep.confirm({content:'If you\'ve disabled our image editor, you can re-enable it here.<br />Do you want to re-enable the image editor?',success:function(){delete localStorage['vie-disable']},fail:function(){ep.hide()}});return false;">Re-enable image editor</a></li>
+                <li class="change-password"><a href="/admin/users/changepassword.aspx">Change Password</a></li>
+                <li class="logout"><asp:LoginStatus CssClass="logout" runat="server" /></li>
+            </ul>
+
+        </div>
+    </div>
+
+    <div>
+        <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
+        
+        </asp:ContentPlaceHolder>
+    </div>
+
+        <script type="text/javascript" charset="utf-8">
+            $(document).ready(function () {
+                $("a[rel^='ImageCropper']").prettyPhoto({ deeplinking: false, social_tools: '', theme: 'cms_custom' });
+            });
+        </script>
+        <script>
+            function pageLoad() {
+                $("a[rel^='ImageCropper']").prettyPhoto({ deeplinking: false, social_tools: '', theme: 'cms_custom' });
+            }
+        </script>
+
+
+    </form>
+</body>
+</html>

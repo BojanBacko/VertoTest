@@ -1,0 +1,178 @@
+/* general formatting */
+
+body {
+	margin: 0;
+	padding: 15px;
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 62.5%;
+	line-height: 180%;
+	color: #666666;
+    background:#F6F6F6;
+
+}
+
+a {
+	text-decoration: none;
+	color: #8B005A;
+    outline: none;
+}
+
+a:hover {
+	color: #ef40a8;
+}
+
+img {
+	border: none;
+}
+
+p {
+	padding: 0px 0px 15px 0px;
+	margin: 0px;
+}
+
+h1, h2, h3, h4, h5 {
+	padding: 0px 0px 15px 0px;
+	margin: 0px;
+	color: #90133B;
+	font-weight: normal;
+}
+
+h1 {
+	font-size: 2.2em;
+	line-height: 1.1em;
+	padding: 2px 0 2px 0;
+	margin-bottom: 15px;
+}
+
+h2 {
+	font-size: 1.5em;
+	line-height: 1.1em;
+	padding: 0 0 10px 0;
+	color: #90133B;
+}
+
+h3 {
+	font-size: 1.15em;
+	line-height: 1.1em;
+	color: #93B633;
+	font-weight: bold;
+}
+
+form {
+	margin: 0px;
+	padding: 0px;
+}
+
+form label {
+	float: left;
+	clear: left;
+	display: block;
+	width: 120px;
+	padding-top: 3px;
+	margin-bottom: 7px;
+}
+
+form span.cbLabels label {
+	float: none;
+	clear: none;
+	display: inline;
+	width: auto;
+	padding: 0 25px 0 0;
+    margin: 0;
+}
+
+input[type=text], input[type=password], textarea {
+	font-size: 1em;
+	line-height: 1.1em;
+	height: 1.2em;
+	width: 20em;
+	padding: 3px;
+	margin: 0px;
+	border: 1px solid #CCCCCC;
+	color: #777777;
+	font-family: Arial, Helvetica, sans-serif;
+}
+
+select {
+	color: #444444;
+	font-size: 1em;
+	line-height: 1em;
+}
+
+textarea {
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 1em;
+	padding: 3px;
+}
+
+.valSummary {
+    color: #E71D35;
+}
+
+.valSummary ul {
+    display: none;
+}
+
+.styleButton {
+    display: inline-block;
+    padding: 7px 11px;
+    border: none;
+    margin: 0;
+    border-radius: 4px;
+	-webkit-border-radius: 4px;
+	-moz-border-radius: 4px;
+	-webkit-box-shadow: 1px 2px 3px #888;
+	-moz-box-shadow: 1px 2px 3px #888;
+	box-shadow: 1px 2px 3px #888;
+	position:relative;
+	behavior: url(/styles/PIE.htc);
+    color: white;
+    background-color: #90133B;
+    cursor: pointer;
+    font-size: 1.2em;
+}
+
+.styleButton:hover {
+    background-color: #93B633;
+    color: white;
+}
+
+.white { color: #FFFFFF !important; }
+.red { color: #E71D35 !important; }
+.grey { color: #666666 !important; }
+.purple { color: #8B005A !important; }
+.pink { color: #EC008C !important; }
+.green { color: #93B633 !important; }
+
+a.grey:hover
+{
+    color: #E71D35;
+}
+
+ul, ol {
+	margin: 0;
+	padding: 0 0 15px 20px;
+}
+
+ul li, ol li {
+	padding-bottom: 5px;
+}
+
+.clearer {
+	clear: both;
+}
+
+
+a.standardBut, a.standardBut2 {
+	display: block;
+	width: 260px;
+	height: 26px;
+	background: transparent url(/images/button_blank.png) no-repeat scroll 0px 0px;
+	padding: 3px 0px 0px 25px;
+	text-decoration: none;
+	color: #FFFFFF;
+}
+
+.popup {
+    font-size: 1.2em;
+}

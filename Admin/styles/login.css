@@ -1,0 +1,28 @@
+﻿body { font-family:Arial; font-size:62.5%; color:#77787b;}
+#tier-page{float:left; width:960px; background:#fff; padding-bottom:200px;}
+.clear {clear:both;}
+.logo-login {background:url('/admin/images/logo2.png') no-repeat 50px 25px; width:300px; height:100px; margin-top:0px;}
+.logo-login.cms {background-image:url('/admin/images/verto_logo.png'); background-position:50px; height:50px; margin-top:20px;}
+.container {position:relative;border:1px solid #e5e5e5; margin: 0 auto; width:300px; height:auto; margin-top:125px; background:url('/admin/images/login-bg.png') repeat-y;}
+.chevron {position:absolute; top:-1px; right:40px; background:url('/admin/images/chevron.gif') no-repeat left top; width:14px; height:13px;}
+.login {font-size:1.2em;padding:15px 15px 15px 15px;}
+.login a.btn {padding:5px; background:#77787b; color:#fff;}
+.login a.btn:hover {background:#ab4b6c; text-decoration:none;}
+input.login {height:15px; font-family:Arial; padding:5px; margin:5px 0px;}
+.checkbox {float:left;height:35px;}
+.checkbox-text {float:left; height:35px; line-height:25px; padding-left:10px;}
+.error-msg {color:#ab4b6c;}
+.retrieve-link {padding:15px 0px 0px 0px;}
+a {color:#ab4b6c; text-decoration:none;}
+a:hover {text-decoration:none;}
+a.customer {float:right; color:#7C7C7C;}
+a.customer:hover {float:right; color:#810136;}
+a.btn-back {position:absolute; right:0px; bottom:-30px; width:135px; height:20px; color:#7C7C7C; font-size:1.2em;}
+a.btn-back:hover {color:#810136;}
+.submit {padding:5px;color:#ffffff; background-color:#77787B;}
+.submit.lc {background-color:#7C7C7C;}
+.submit:hover {background-color:#AB4B6C; text-decoration:none;}
+.submit.lc:hover {background-color:#810136;/*background-color:#142F76;*/}
+.login.retrieve {padding-top:30px;}
+span.red-text{display:block; padding-bottom:10px; font-size:1.2em; color:red}
+td.grey-text{width:120px;}
