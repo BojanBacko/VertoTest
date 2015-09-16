@@ -10,7 +10,7 @@ public partial class Tier : System.Web.UI.Page
 {
     protected void Page_Load(object sender, EventArgs e)
     {
-        
+        //TEST
         ds.SelectParameters.Clear();
         ds.SelectParameters.Add("slug", Request.QueryString["slug"]);
 
