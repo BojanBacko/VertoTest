@@ -10,24 +10,45 @@ using System.IO;
 using System.Configuration;
 using System.Data.SqlClient;
 
-public static class functions
-{
-    static public string RemoveHTML(string strText)
-    {
-        Regex Reg = new Regex("<[^>]*>");
-        string res = Reg.Replace(strText, "");
-        return res;
+public static class functions {
+
+    /// <summary>
+    /// Remove all html tags from a string input
+    /// </summary>
+    /// <param name="input"></param>
+    /// <returns></returns>
+    public static string RemoveHTML(string input) {
+        return Regex.Replace(input, "<[^>]*>", "");
     }
 
-    static public string ChopLastWord(string strText, int Length)
-    {
-        string s = RemoveHTML(strText.ToString());
+    /// <summary>
+    /// Remove all html tags and enforce max character length on string input
+    /// </summary>
+    /// <param name="input"></param>
+    /// <param name="maxCharacterLength"></param>
+    /// <returns></returns>
+    public static string ChopLastWord(string input, int maxCharacterLength) {
 
-        s = s.Length > Length ? s.Substring(0, Length) + "..." : s;
+        // remove any html
+        var s = RemoveHTML(input);
 
-        if (s.Length > Length) s = s.LastIndexOf(' ') > 0 ? s.Substring(0, s.LastIndexOf(' ')) + "..." : s;
+        // check if string length is out of bounds
+        if (s.Length > maxCharacterLength) {
+
+            // cut string short
+            s = s.Substring(0, maxCharacterLength);
+
+            // shorten to the last space to ensure there are no words cut in half by the last substring command
+            var lastSpaceIndex = s.LastIndexOf(' ');
+            if (lastSpaceIndex > 0) s = s.Substring(0, lastSpaceIndex);
+
+            // add ellipsis
+            s = s + "...";
+
+        }
 
         return s;
+
     }
 
     static public string DoUrlString(string strText)
