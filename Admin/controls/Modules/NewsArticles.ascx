@@ -2,7 +2,6 @@
 <%@ Register Assembly="CKEditor.NET" Namespace="CKEditor.NET" TagPrefix="CKEditor" %>
 <%@ Register Src="~/admin/controls/AdminControl.ascx" TagName="CMS" TagPrefix="verto" %>
 <%@ Register Src="~/admin/controls/ImageControl.ascx" TagName="ImageControl" TagPrefix="verto" %>
-<%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="asp" %>
 
 <div class="module width_3_quarter">
     <h3 class="tabs_involved">News</h3>
@@ -27,8 +26,7 @@
                 </fieldset>                                
                 <fieldset>
                     <label>Date Published</label>
-                    <asp:TextBox runat="server" ID="datePublished" MaxLength="10" />
-                    <asp:CalendarExtender runat="server" TargetControlID="datePublished" Format="dd/MM/yyyy"></asp:CalendarExtender>
+                    <asp:TextBox runat="server" ID="datePublished" MaxLength="10" CssClass="ei ei-date-select" style="width: 120px" />
                     <asp:RequiredFieldValidator runat="server" ID="rfv" ControlToValidate="datePublished" ErrorMessage="Please enter a date." ValidationGroup="NewsArticleContent" CssClass="error" />
                 </fieldset> 
                 <fieldset>
