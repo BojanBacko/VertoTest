@@ -82,9 +82,8 @@
     <form id="form1" runat="server">
     <asp:SqlDataSource ID="ds" runat="server" DataSourceMode="DataReader" ConnectionString="<%$ ConnectionStrings:MSSQL %>" />
 
-    <asp:ToolkitScriptManager runat="server"></asp:ToolkitScriptManager>
-
      <div>
+         
         <div id="header">
             <h1 class="site_title"><a href="/admin/"><%= ConfigurationManager.AppSettings["GenericTitle"].ToString()%> CMS</a></h1>
             <h2 class="section_title">Dashboard</h2>
