@@ -46,7 +46,7 @@ public partial class Page : System.Web.UI.Page
             }
         }
 
-        ds.SelectCommand = "SELECT COUNT(" + CmsSettings.IdField + ") AS count FROM tblContent WHERE " + CmsSettings.ParentField + " = " + Convert.ToInt32(Request.QueryString["id"]);
+        ds.SelectCommand = "SELECT COUNT(" + CmsSettings.IDField + ") AS count FROM tblContent WHERE " + CmsSettings.ParentField + " = " + Convert.ToInt32(Request.QueryString["id"]);
 
         using (SqlDataReader drCount = (SqlDataReader)ds.Select(DataSourceSelectArguments.Empty))
         {
@@ -98,12 +98,12 @@ public partial class Page : System.Web.UI.Page
     private void GetBreadcrumb()
     {
         ds.DataSourceMode = SqlDataSourceMode.DataSet;
-        ds.SelectCommand = string.Format("SELECT {0}, {1}, {2}, {3} FROM tblContent", CmsSettings.IdField, CmsSettings.ParentField, CmsSettings.TitleField, CmsSettings.SlugField);
+        ds.SelectCommand = string.Format("SELECT {0}, {1}, {2}, {3} FROM tblContent", CmsSettings.IDField, CmsSettings.ParentField, CmsSettings.TitleField, CmsSettings.SlugField);
         DataView dv = (DataView)ds.Select(DataSourceSelectArguments.Empty);
         DataTable dt = dv.Table;
         StringBuilder sb = new StringBuilder();
         StringBuilder sbBreadcrumb = new StringBuilder();
-        DataRow []r = dt.Select(CmsSettings.IdField + "=" + Convert.ToInt32(Request.QueryString["id"]));
+        DataRow []r = dt.Select(CmsSettings.IDField + "=" + Convert.ToInt32(Request.QueryString["id"]));
 
         int count = 0;
 
@@ -112,17 +112,17 @@ public partial class Page : System.Web.UI.Page
             count++;
             if (count == 1)
             {
-                sb.Append(" " + CmsSettings.IdField + " = " + r[0][CmsSettings.IdField].ToString());
+                sb.Append(" " + CmsSettings.IDField + " = " + r[0][CmsSettings.IDField].ToString());
             }
             else
             {
-                sb.Append(" OR " + CmsSettings.IdField + " = " + r[0][CmsSettings.IdField].ToString());
+                sb.Append(" OR " + CmsSettings.IDField + " = " + r[0][CmsSettings.IDField].ToString());
             }
-            r = dt.Select(CmsSettings.IdField + "=" + Convert.ToInt32(r[0][CmsSettings.ParentField]));
+            r = dt.Select(CmsSettings.IDField + "=" + Convert.ToInt32(r[0][CmsSettings.ParentField]));
         }
 
         ds.DataSourceMode = SqlDataSourceMode.DataReader;
-        ds.SelectCommand = string.Format("SELECT {0}, {1}, {2} FROM tblContent WHERE " + sb.ToString() + " ORDER BY {0}, {1}", CmsSettings.IdField, CmsSettings.ParentField, CmsSettings.TitleField);
+        ds.SelectCommand = string.Format("SELECT {0}, {1}, {2} FROM tblContent WHERE " + sb.ToString() + " ORDER BY {0}, {1}", CmsSettings.IDField, CmsSettings.ParentField, CmsSettings.TitleField);
 
         using (SqlDataReader drB = (SqlDataReader)ds.Select(DataSourceSelectArguments.Empty))
         {
@@ -130,7 +130,7 @@ public partial class Page : System.Web.UI.Page
             {
                 while (drB.Read())
                 {
-                    sbBreadcrumb.AppendLine(String.Format("<a href=\"/admin/page.aspx?id={0}\">> {1}</a>", drB[CmsSettings.IdField].ToString(), drB[CmsSettings.TitleField].ToString()));
+                    sbBreadcrumb.AppendLine(String.Format("<a href=\"/admin/page.aspx?id={0}\">> {1}</a>", drB[CmsSettings.IDField].ToString(), drB[CmsSettings.TitleField].ToString()));
                 }
             }
         }

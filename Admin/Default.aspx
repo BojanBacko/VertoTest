@@ -40,7 +40,7 @@
                         <tr>
                             <td><%#Eval(CmsSettings.TitleField) %></td>
                             <td>
-                                <asp:ImageButton runat="server" ID="btnEdit1" ImageUrl="/admin/images/edit-page.png" CommandArgument='<%#Eval(CmsSettings.IdField) %>' />
+                                <asp:ImageButton runat="server" ID="btnEdit1" ImageUrl="/admin/images/edit-page.png" CommandArgument='<%#Eval(CmsSettings.IDField) %>' />
                             </td>
                         </tr>
                     </ItemTemplate>

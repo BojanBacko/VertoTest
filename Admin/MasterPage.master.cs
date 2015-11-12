@@ -30,7 +30,7 @@ public partial class MasterPage : System.Web.UI.MasterPage
             litMainSectionTitle.Text = "THINGS WE LIKE";
         }
 
-        ds.SelectCommand = string.Format("SELECT {0}, {1} FROM tblContent WHERE {2} = 0", CmsSettings.IdField, CmsSettings.TitleField, CmsSettings.ParentField);
+        ds.SelectCommand = string.Format("SELECT {0}, {1} FROM tblContent WHERE {2} = 0", CmsSettings.IDField, CmsSettings.TitleField, CmsSettings.ParentField);
         rptNav.DataSource = ds.Select(DataSourceSelectArguments.Empty);
         rptNav.DataBind();
         //Response.Write(ds.SelectCommand);

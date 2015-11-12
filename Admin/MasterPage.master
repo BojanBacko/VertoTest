@@ -118,7 +118,7 @@
                             <li class="btn-edit-page"><a href="/admin/homepage.aspx">Home</a></li>
                             <asp:Repeater runat="server" ID="rptNav">
                                 <ItemTemplate>
-                                    <li class="btn-edit-page"><a href="/admin/page.aspx?id=<%#Eval(CmsSettings.IdField) %>"><%#Eval(CmsSettings.TitleField) %></a></li>
+                                    <li class="btn-edit-page"><a href="/admin/page.aspx?id=<%#Eval(CmsSettings.IDField) %>"><%#Eval(CmsSettings.TitleField) %></a></li>
                                 </ItemTemplate>
                             </asp:Repeater>
                         </ul>

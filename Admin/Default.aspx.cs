@@ -23,7 +23,7 @@ public partial class _Default : System.Web.UI.Page
 
         if (!IsPostBack)
         {
-            ds.SelectCommand = string.Format("SELECT {0}, {1} FROM tblContent WHERE {2} = 0", CmsSettings.IdField, CmsSettings.TitleField, CmsSettings.ParentField);
+            ds.SelectCommand = string.Format("SELECT {0}, {1} FROM tblContent WHERE {2} = 0", CmsSettings.IDField, CmsSettings.TitleField, CmsSettings.ParentField);
             rptPages.DataSource = ds.Select(DataSourceSelectArguments.Empty);
             rptPages.DataBind();
         }

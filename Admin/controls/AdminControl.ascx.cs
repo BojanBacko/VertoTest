@@ -178,13 +178,13 @@ public partial class Admin_Controls_AdminControl : AdminFunctions
 		}
 		else if (e.CommandName.ToLower() == "moveup")
 		{
-			int PageID = (int)((GridView)sender).DataKeys[Convert.ToInt32((e.CommandArgument ?? CmsSettings.IdField).ToString())].Value;
+			int PageID = (int)((GridView)sender).DataKeys[Convert.ToInt32((e.CommandArgument ?? CmsSettings.IDField).ToString())].Value;
 			using (SqlConnection conn = new SqlConnection(System.Configuration.ConfigurationManager.ConnectionStrings["MSSQL"].ToString()))
 			{
 				conn.Open();
 				using (SqlCommand q = new SqlCommand(string.Empty, conn))
 				{
-					q.CommandText = string.Format("UPDATE [{0}] SET [{1}] = ([{1}] + 1) WHERE [{2}] = (SELECT TOP 1 [{2}] FROM [{0}] WHERE [{1}] < (SELECT [{1}] FROM [{0}] WHERE [{2}] = '{3}') AND [{4}] = '{5}' ORDER BY [{1}] DESC); UPDATE [{0}] SET [{1}] = ([{1}] - 1) WHERE [{2}] = '{3}';", TableName, SortColumn, IdFieldOverride ?? CmsSettings.IdField, PageID, ParentFieldOverride ?? CmsSettings.ParentField, Request.QueryString["id"].ToString());
+					q.CommandText = string.Format("UPDATE [{0}] SET [{1}] = ([{1}] + 1) WHERE [{2}] = (SELECT TOP 1 [{2}] FROM [{0}] WHERE [{1}] < (SELECT [{1}] FROM [{0}] WHERE [{2}] = '{3}') AND [{4}] = '{5}' ORDER BY [{1}] DESC); UPDATE [{0}] SET [{1}] = ([{1}] - 1) WHERE [{2}] = '{3}';", TableName, SortColumn, IdFieldOverride ?? CmsSettings.IDField, PageID, ParentFieldOverride ?? CmsSettings.ParentField, Request.QueryString["id"].ToString());
 					q.ExecuteNonQuery();
 				}
 			}
@@ -192,13 +192,13 @@ public partial class Admin_Controls_AdminControl : AdminFunctions
 		}
 		else if (e.CommandName.ToLower() == "movedown")
 		{
-			int PageID = (int)((GridView)sender).DataKeys[Convert.ToInt32((e.CommandArgument ?? CmsSettings.IdField).ToString())].Value;
+			int PageID = (int)((GridView)sender).DataKeys[Convert.ToInt32((e.CommandArgument ?? CmsSettings.IDField).ToString())].Value;
 			using (SqlConnection conn = new SqlConnection(System.Configuration.ConfigurationManager.ConnectionStrings["MSSQL"].ToString()))
 			{
 				conn.Open();
 				using (SqlCommand q = new SqlCommand(string.Empty, conn))
 				{
-					q.CommandText = string.Format("UPDATE [{0}] SET [{1}] = ([{1}] - 1) WHERE [{2}] = (SELECT TOP 1 [{2}] FROM [{0}] WHERE [{1}] > (SELECT [{1}] FROM [{0}] WHERE [{2}] = '{3}') AND [{4}] = '{5}' ORDER BY [{1}] ASC); UPDATE [{0}] SET [{1}] = ([{1}] + 1) WHERE [{2}] = '{3}';", TableName, SortColumn, IdFieldOverride ?? CmsSettings.IdField, PageID, ParentFieldOverride ?? CmsSettings.ParentField, Request.QueryString["id"].ToString());
+					q.CommandText = string.Format("UPDATE [{0}] SET [{1}] = ([{1}] - 1) WHERE [{2}] = (SELECT TOP 1 [{2}] FROM [{0}] WHERE [{1}] > (SELECT [{1}] FROM [{0}] WHERE [{2}] = '{3}') AND [{4}] = '{5}' ORDER BY [{1}] ASC); UPDATE [{0}] SET [{1}] = ([{1}] + 1) WHERE [{2}] = '{3}';", TableName, SortColumn, IdFieldOverride ?? CmsSettings.IDField, PageID, ParentFieldOverride ?? CmsSettings.ParentField, Request.QueryString["id"].ToString());
 					q.ExecuteNonQuery();
 				}
 			}
@@ -206,13 +206,13 @@ public partial class Admin_Controls_AdminControl : AdminFunctions
 		}
 		else if (e.CommandName.ToLower() == "publish")
 		{
-			int PageID = (int)((GridView)sender).DataKeys[Convert.ToInt32((e.CommandArgument ?? CmsSettings.IdField).ToString())].Value;
+			int PageID = (int)((GridView)sender).DataKeys[Convert.ToInt32((e.CommandArgument ?? CmsSettings.IDField).ToString())].Value;
 			using (SqlConnection conn = new SqlConnection(System.Configuration.ConfigurationManager.ConnectionStrings["MSSQL"].ToString()))
 			{
 				conn.Open();
 				using (SqlCommand q = new SqlCommand(string.Empty, conn))
 				{
-					q.CommandText = string.Format("UPDATE [{0}] SET [{1}] = [{1}] ^ 1 WHERE [{2}] = '{3}'", TableName, PublishColumn ?? "published", IdFieldOverride ?? CmsSettings.IdField, PageID);
+					q.CommandText = string.Format("UPDATE [{0}] SET [{1}] = [{1}] ^ 1 WHERE [{2}] = '{3}'", TableName, PublishColumn ?? "published", IdFieldOverride ?? CmsSettings.IDField, PageID);
 					q.ExecuteNonQuery();
 				}
 			}
@@ -317,7 +317,7 @@ public partial class Admin_Controls_AdminControl : AdminFunctions
 					}
 				}
 			}
-			e.Row.Attributes["data-id"] = ((DataRowView)e.Row.DataItem).Row.Field<Int32>(IdFieldOverride ?? CmsSettings.IdField).ToString(); // Drag + drop ordering
+			e.Row.Attributes["data-id"] = ((DataRowView)e.Row.DataItem).Row.Field<Int32>(IdFieldOverride ?? CmsSettings.IDField).ToString(); // Drag + drop ordering
 		}
 	}
 
@@ -1303,7 +1303,7 @@ public partial class Admin_Controls_AdminControl : AdminFunctions
 
 		// Drag + drop ordering
 		gvPages.Attributes["data-sort-column"] = SortColumn ?? "pageOrder";
-		gvPages.Attributes["data-id-column"] = IdFieldOverride ?? IdName ?? CmsSettings.IdField;
+		gvPages.Attributes["data-id-column"] = IdFieldOverride ?? IdName ?? CmsSettings.IDField;
 		gvPages.Attributes["data-table"] = TableName ?? "tblContent";
 		gvPages.Attributes["data-current-page"] = gvPages.PageIndex.ToString();
 		gvPages.Attributes["data-page-size"] = PageSize.ToString();
