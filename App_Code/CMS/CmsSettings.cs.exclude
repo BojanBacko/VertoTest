@@ -1,0 +1,31 @@
+﻿using CMS.Providers;
+using CMS.Context;
+
+namespace CMS {
+
+    public static class CmsSettings {
+
+        public static readonly string WebsiteName   = "Lamb & Holmes";
+        public static readonly string SupportEmail  = "tom@vertouk.com";
+    
+        public static class Page {
+
+            public static readonly string TableName = "cms_Pages";
+
+            public static ICrumbProv        CrumbProv   { get { return new PageInstanceCrumbProv(); } }
+            public static IPageDataProv     DataProv    { get { return new PageInstanceDataContext(); } }
+            public static IPageModuleProv   ModuleProv  { get { return new WebsiteSettingsModuleProv(); } }
+
+            public class FieldNames {
+                public static readonly string ID            = "pageID";
+                public static readonly string Parent        = "parentID";
+                public static readonly string Slug          = "slug";
+                public static readonly string Title         = "title";
+                public static readonly string TemplateID    = "templateID";
+            }
+
+        }
+
+    }
+
+}
