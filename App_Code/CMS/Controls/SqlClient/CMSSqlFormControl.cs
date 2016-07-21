@@ -9,9 +9,10 @@ namespace CMS.Controls.SqlClient {
     public class CMSSqlFormControl : CMSFormControl {
 
         public int PageID { get; set; }
-
-        [Required]
+       
         public string CommandText { get; set; }
+        
+        public string TableName { get; set; }        
 
         protected override void OnLoad(EventArgs e) {
             base.OnLoad(e);

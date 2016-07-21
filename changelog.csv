@@ -1,0 +1,10 @@
+"Verto CMS: Changelog" 
+"" 
+"Commit Hash","Author","Email","Date","Subject" 
+ca742129dffd42614f5823898b24a09595bc041f,Tom Maxwell,maxze2k5@hotmail.com,Wed Nov 11 17:14:43 2015 +0000,Removal of CMS > AjaxControlToolkit Dependancies
+4aa7f22a1da1beeab2010fc597baf31a1a9b91a3,Bojan,bojan@vertouk.com,Mon Oct 26 10:34:52 2015 +0000,Removed AjaxControlToolKit references and added Easy Input for calendar pickers instead. AjaxControlToolKit was slowing the CMS down considerably.
+31e53126a20fb8c9845e3c771f48b2202fed3784,Tom Maxwell,maxze2k5@hotmail.com,Thu Sep 17 16:05:25 2015 +0100,Small code reduction on commonly used functions with addition of documentation comments
+a704c7fb1c395f878d9b5ad18c8910f3bfdf813e,Tom Maxwell,maxze2k5@hotmail.com,Wed Sep 16 15:06:55 2015 +0100,Front-end file removal
+ac24672f7a5c1fbe65dd8a77604494a802149ac7,Bojan,bojan@vertouk.com,Wed Sep 16 11:29:22 2015 +0100,Web Config connection string update
+080164dd43acbe0ba1c33a22b4a04ee65a9cd3f7,Bojan,bojan@vertouk.com,Wed Sep 16 11:14:45 2015 +0100,Test
+86bbb0866594f1bdfafb57800055c5c94a09c7ae,Tom Maxwell,maxze2k5@hotmail.com,Wed Sep 16 11:09:28 2015 +0100,Initial commit
